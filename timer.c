@@ -2,7 +2,7 @@
  * timer.c
  *
  *  Created on: 13 Mar 2017
- *      Author: niels
+ *      Author: niels@teekens.info
  */
 
 

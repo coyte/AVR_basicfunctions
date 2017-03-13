@@ -2,7 +2,7 @@
  * timer.h
  *
  *  Created on: 13 Mar 2017
- *      Author: niels
+ *      Author: niels@teekens.info
  */
 
 #include <avr/io.h>
