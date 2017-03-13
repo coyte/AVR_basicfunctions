@@ -6,16 +6,19 @@
 C_SRCS += \
 ../basicfuntions.c \
 ../lcd.c \
+../timer.c \
 ../usart.c 
 
 OBJS += \
 ./basicfuntions.o \
 ./lcd.o \
+./timer.o \
 ./usart.o 
 
 C_DEPS += \
 ./basicfuntions.d \
 ./lcd.d \
+./timer.d \
 ./usart.d 
 
 

@@ -37,6 +37,7 @@ Address of section .data set to 0x800100
 LOAD /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/../../../../avr/lib/avr5/crtatmega328p.o
 LOAD ./basicfuntions.o
 LOAD ./lcd.o
+LOAD ./timer.o
 LOAD ./usart.o
 START GROUP
 LOAD /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a
@@ -135,7 +136,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000      0x372
+.text           0x0000000000000000      0x404
  *(.vectors)
  .vectors       0x0000000000000000       0x68 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/../../../../avr/lib/avr5/crtatmega328p.o
                 0x0000000000000000                __vectors
@@ -213,13 +214,13 @@ END GROUP
                 0x00000000000000a2                __vector_21
                 0x00000000000000a2                __vector_15
                 0x00000000000000a2                __vector_8
-                0x00000000000000a2                __vector_14
                 0x00000000000000a2                __vector_10
                 0x00000000000000a2                __vector_16
                 0x00000000000000a2                __vector_18
                 0x00000000000000a2                __vector_22
  .text          0x00000000000000a6        0x0 ./basicfuntions.o
  .text          0x00000000000000a6        0x0 ./lcd.o
+ .text          0x00000000000000a6        0x0 ./timer.o
  .text          0x00000000000000a6        0x0 ./usart.o
  .text          0x00000000000000a6        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_exit.o)
  .text          0x00000000000000a6        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_copy_data.o)
@@ -231,116 +232,125 @@ END GROUP
                 0x00000000000000a6                . = ALIGN (0x2)
  *(.text.*)
  .text.startup.main
-                0x00000000000000a6       0x6a ./basicfuntions.o
+                0x00000000000000a6       0x78 ./basicfuntions.o
                 0x00000000000000a6                main
  .text.toggle_e
-                0x0000000000000110        0x8 ./lcd.o
+                0x000000000000011e        0xe ./lcd.o
  .text.lcd_write
-                0x0000000000000118       0x3e ./lcd.o
+                0x000000000000012c       0x3e ./lcd.o
  .text.lcd_read.constprop.0
-                0x0000000000000156       0x26 ./lcd.o
+                0x000000000000016a       0x38 ./lcd.o
  .text.lcd_waitbusy
-                0x000000000000017c       0x10 ./lcd.o
+                0x00000000000001a2       0x14 ./lcd.o
  .text.lcd_command
-                0x000000000000018c       0x12 ./lcd.o
-                0x000000000000018c                lcd_command
+                0x00000000000001b6       0x12 ./lcd.o
+                0x00000000000001b6                lcd_command
  .text.lcd_data
-                0x000000000000019e       0x12 ./lcd.o
-                0x000000000000019e                lcd_data
+                0x00000000000001c8       0x12 ./lcd.o
+                0x00000000000001c8                lcd_data
  .text.lcd_gotoxy
-                0x00000000000001b0        0xe ./lcd.o
-                0x00000000000001b0                lcd_gotoxy
+                0x00000000000001da        0xe ./lcd.o
+                0x00000000000001da                lcd_gotoxy
  .text.lcd_getxy
-                0x00000000000001be        0x8 ./lcd.o
-                0x00000000000001be                lcd_getxy
+                0x00000000000001e8        0x8 ./lcd.o
+                0x00000000000001e8                lcd_getxy
  .text.lcd_clrscr
-                0x00000000000001c6        0x6 ./lcd.o
-                0x00000000000001c6                lcd_clrscr
+                0x00000000000001f0        0x6 ./lcd.o
+                0x00000000000001f0                lcd_clrscr
  .text.lcd_home
-                0x00000000000001cc        0x6 ./lcd.o
-                0x00000000000001cc                lcd_home
+                0x00000000000001f6        0x6 ./lcd.o
+                0x00000000000001f6                lcd_home
  .text.lcd_putc
-                0x00000000000001d2       0x28 ./lcd.o
-                0x00000000000001d2                lcd_putc
+                0x00000000000001fc       0x28 ./lcd.o
+                0x00000000000001fc                lcd_putc
  .text.lcd_puts
-                0x00000000000001fa       0x18 ./lcd.o
-                0x00000000000001fa                lcd_puts
+                0x0000000000000224       0x18 ./lcd.o
+                0x0000000000000224                lcd_puts
  .text.lcd_puts_p
-                0x0000000000000212       0x1c ./lcd.o
-                0x0000000000000212                lcd_puts_p
+                0x000000000000023c       0x1c ./lcd.o
+                0x000000000000023c                lcd_puts_p
  .text.lcd_init
-                0x000000000000022e       0x74 ./lcd.o
-                0x000000000000022e                lcd_init
+                0x0000000000000258       0x74 ./lcd.o
+                0x0000000000000258                lcd_init
+ .text.Timer0_Init
+                0x00000000000002cc        0x4 ./timer.o
+                0x00000000000002cc                Timer0_Init
+ .text.Timer0_Start
+                0x00000000000002d0       0x18 ./timer.o
+                0x00000000000002d0                Timer0_Start
+ .text.__vector_14
+                0x00000000000002e8       0x4c ./timer.o
+                0x00000000000002e8                __vector_14
  .text.USART_init
-                0x00000000000002a2       0x18 ./usart.o
-                0x00000000000002a2                USART_init
+                0x0000000000000334       0x18 ./usart.o
+                0x0000000000000334                USART_init
  .text.USART_receive
-                0x00000000000002ba        0xe ./usart.o
-                0x00000000000002ba                USART_receive
+                0x000000000000034c        0xe ./usart.o
+                0x000000000000034c                USART_receive
  .text.USART_send
-                0x00000000000002c8        0xe ./usart.o
-                0x00000000000002c8                USART_send
+                0x000000000000035a        0xe ./usart.o
+                0x000000000000035a                USART_send
  .text.USART_putstring
-                0x00000000000002d6       0x18 ./usart.o
-                0x00000000000002d6                USART_putstring
+                0x0000000000000368       0x18 ./usart.o
+                0x0000000000000368                USART_putstring
  .text.libgcc.mul
-                0x00000000000002ee        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_exit.o)
+                0x0000000000000380        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.div
-                0x00000000000002ee        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_exit.o)
- .text.libgcc   0x00000000000002ee        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_exit.o)
+                0x0000000000000380        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_exit.o)
+ .text.libgcc   0x0000000000000380        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.prologue
-                0x00000000000002ee        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_exit.o)
+                0x0000000000000380        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.builtins
-                0x00000000000002ee        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_exit.o)
+                0x0000000000000380        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.fmul
-                0x00000000000002ee        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_exit.o)
+                0x0000000000000380        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.fixed
-                0x00000000000002ee        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_exit.o)
+                0x0000000000000380        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.mul
-                0x00000000000002ee        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_copy_data.o)
+                0x0000000000000380        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_copy_data.o)
  .text.libgcc.div
-                0x00000000000002ee        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_copy_data.o)
- .text.libgcc   0x00000000000002ee        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_copy_data.o)
+                0x0000000000000380        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_copy_data.o)
+ .text.libgcc   0x0000000000000380        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_copy_data.o)
  .text.libgcc.prologue
-                0x00000000000002ee        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_copy_data.o)
+                0x0000000000000380        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_copy_data.o)
  .text.libgcc.builtins
-                0x00000000000002ee        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_copy_data.o)
+                0x0000000000000380        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_copy_data.o)
  .text.libgcc.fmul
-                0x00000000000002ee        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_copy_data.o)
+                0x0000000000000380        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_copy_data.o)
  .text.libgcc.fixed
-                0x00000000000002ee        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_copy_data.o)
+                0x0000000000000380        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_copy_data.o)
  .text.libgcc.mul
-                0x00000000000002ee        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_clear_bss.o)
+                0x0000000000000380        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_clear_bss.o)
  .text.libgcc.div
-                0x00000000000002ee        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_clear_bss.o)
- .text.libgcc   0x00000000000002ee        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_clear_bss.o)
+                0x0000000000000380        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_clear_bss.o)
+ .text.libgcc   0x0000000000000380        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_clear_bss.o)
  .text.libgcc.prologue
-                0x00000000000002ee        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_clear_bss.o)
+                0x0000000000000380        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_clear_bss.o)
  .text.libgcc.builtins
-                0x00000000000002ee        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_clear_bss.o)
+                0x0000000000000380        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_clear_bss.o)
  .text.libgcc.fmul
-                0x00000000000002ee        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_clear_bss.o)
+                0x0000000000000380        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_clear_bss.o)
  .text.libgcc.fixed
-                0x00000000000002ee        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_clear_bss.o)
+                0x0000000000000380        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_clear_bss.o)
  .text.avr-libc
-                0x00000000000002ee       0x16 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/../../../../avr/lib/avr5/libc.a(itoa.o)
-                0x00000000000002ee                itoa
-                0x00000000000002ee                __itoa
+                0x0000000000000380       0x16 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/../../../../avr/lib/avr5/libc.a(itoa.o)
+                0x0000000000000380                itoa
+                0x0000000000000380                __itoa
  .text.avr-libc
-                0x0000000000000304       0x16 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/../../../../avr/lib/avr5/libc.a(itoa_ncheck.o)
-                0x0000000000000304                __itoa_ncheck
+                0x0000000000000396       0x16 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/../../../../avr/lib/avr5/libc.a(itoa_ncheck.o)
+                0x0000000000000396                __itoa_ncheck
  .text.avr-libc
-                0x000000000000031a       0x34 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/../../../../avr/lib/avr5/libc.a(utoa_ncheck.o)
-                0x000000000000031a                __utoa_ncheck
-                0x000000000000031c                __utoa_common
+                0x00000000000003ac       0x34 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/../../../../avr/lib/avr5/libc.a(utoa_ncheck.o)
+                0x00000000000003ac                __utoa_ncheck
+                0x00000000000003ae                __utoa_common
  .text.avr-libc
-                0x000000000000034e       0x20 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/../../../../avr/lib/avr5/libc.a(strrev.o)
-                0x000000000000034e                strrev
-                0x000000000000036e                . = ALIGN (0x2)
+                0x00000000000003e0       0x20 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/../../../../avr/lib/avr5/libc.a(strrev.o)
+                0x00000000000003e0                strrev
+                0x0000000000000400                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000000000000036e        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_exit.o)
-                0x000000000000036e                exit
-                0x000000000000036e                _exit
+ .fini9         0x0000000000000400        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_exit.o)
+                0x0000000000000400                exit
+                0x0000000000000400                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -359,16 +369,17 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000000000000036e        0x4 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_exit.o)
+ .fini0         0x0000000000000400        0x4 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_exit.o)
  *(.fini0)
-                0x0000000000000372                _etext = .
+                0x0000000000000404                _etext = .
 
-.data           0x0000000000800100       0x14 load address 0x0000000000000372
+.data           0x0000000000800100       0x14 load address 0x0000000000000404
                 0x0000000000800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x0000000000800100        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/../../../../avr/lib/avr5/crtatmega328p.o
  .data          0x0000000000800100        0x0 ./basicfuntions.o
  .data          0x0000000000800100        0x0 ./lcd.o
+ .data          0x0000000000800100        0x0 ./timer.o
  .data          0x0000000000800100        0x0 ./usart.o
  .data          0x0000000000800100        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_exit.o)
  .data          0x0000000000800100        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_copy_data.o)
@@ -383,18 +394,20 @@ END GROUP
  *(.rodata)
  *(.rodata*)
  .rodata.main.str1.1
-                0x0000000000800102       0x12 ./basicfuntions.o
+                0x0000000000800102       0x11 ./basicfuntions.o
  *(.gnu.linkonce.d*)
                 0x0000000000800114                . = ALIGN (0x2)
+ *fill*         0x0000000000800113        0x1 
                 0x0000000000800114                _edata = .
                 0x0000000000800114                PROVIDE (__data_end, .)
 
-.bss            0x0000000000800114        0x4
+.bss            0x0000000000800114        0x6
                 0x0000000000800114                PROVIDE (__bss_start, .)
  *(.bss)
  .bss           0x0000000000800114        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/../../../../avr/lib/avr5/crtatmega328p.o
  .bss           0x0000000000800114        0x0 ./basicfuntions.o
  .bss           0x0000000000800114        0x0 ./lcd.o
+ .bss           0x0000000000800114        0x0 ./timer.o
  .bss           0x0000000000800114        0x0 ./usart.o
  .bss           0x0000000000800114        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_exit.o)
  .bss           0x0000000000800114        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/avr5/libgcc.a(_copy_data.o)
@@ -404,19 +417,21 @@ END GROUP
  .bss           0x0000000000800114        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/../../../../avr/lib/avr5/libc.a(utoa_ncheck.o)
  .bss           0x0000000000800114        0x0 /usr/local/Cellar/avr-gcc/6.2.0/lib/gcc/avr/6.2.0/../../../../avr/lib/avr5/libc.a(strrev.o)
  *(.bss*)
+ .bss.xtrTime   0x0000000000800114        0x2 ./timer.o
+                0x0000000000800114                xtrTime
  *(COMMON)
- COMMON         0x0000000000800114        0x4 ./basicfuntions.o
-                0x0000000000800114                String
-                0x0000000000800118                PROVIDE (__bss_end, .)
-                0x0000000000000372                __data_load_start = LOADADDR (.data)
-                0x0000000000000386                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0000000000800116        0x4 ./basicfuntions.o
+                0x0000000000800116                String
+                0x000000000080011a                PROVIDE (__bss_end, .)
+                0x0000000000000404                __data_load_start = LOADADDR (.data)
+                0x0000000000000418                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0000000000800118        0x0
-                0x0000000000800118                PROVIDE (__noinit_start, .)
+.noinit         0x000000000080011a        0x0
+                0x000000000080011a                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x0000000000800118                PROVIDE (__noinit_end, .)
-                0x0000000000800118                _end = .
-                0x0000000000800118                PROVIDE (__heap_start, .)
+                0x000000000080011a                PROVIDE (__noinit_end, .)
+                0x000000000080011a                _end = .
+                0x000000000080011a                PROVIDE (__heap_start, .)
 
 .eeprom         0x0000000000810000        0x0
  *(.eeprom*)
@@ -463,6 +478,7 @@ END GROUP
  .comment       0x0000000000000000       0x11 ./basicfuntions.o
                                          0x12 (size before relaxing)
  .comment       0x0000000000000011       0x12 ./lcd.o
+ .comment       0x0000000000000011       0x12 ./timer.o
  .comment       0x0000000000000011       0x12 ./usart.o
 
 .note.gnu.avr.deviceinfo

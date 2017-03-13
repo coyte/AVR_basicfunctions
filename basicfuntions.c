@@ -5,23 +5,30 @@
 
 #include "lcd.h"
 #include "usart.h"
+#include "timer.h"
 
 char String[4];
 int radix = 10;
 
 
+
+
 // Main function
 int main(void)
     {
+	DDRB = 0x01; //Set as output for LED
     int count = 0;
     
 	lcd_init(LCD_DISP_ON_CURSOR); 			// Initialize display
 	USART_init();        					// Initialize USART
+	Timer0_Init();
+	Timer0_Start();
+	sei();									//Enable interrupts
 
 	// Put a test string on the display
 	lcd_clrscr(); 							// Clear display and home cursor
 	lcd_gotoxy(0,0);
-	lcd_puts("Display testing");
+	lcd_puts("Basicfunctions");
 
 	// Infinite loop
 	while (1)
